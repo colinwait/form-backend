@@ -16,7 +16,7 @@ class CreateFormTemplateComponentsTable extends Migration
         Schema::create('form_template_components', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('template_id')->comment('模板id');
-            $table->bigInteger('group_id')->default(0)->comment('分组id');
+            $table->bigInteger('parent_id')->default(0)->comment('分组id');
             $table->string('name')->comment('名称');
             $table->string('key')->comment('键值');
             $table->string('type')->default('text')->comment('类型');

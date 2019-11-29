@@ -19,6 +19,7 @@ class CreateFormValuesTable extends Migration
             $table->bigInteger('component_id')->comment('组件id');
             $table->bigInteger('form_id')->comment('表单id');
             $table->text('value')->nullable()->comment('表单值');
+            $table->string('remark', 1000)->default('')->comment('备注');
             $table->integer('creator')->comment('创建人');
             $table->integer('created_at')->default(0);
             $table->integer('updated_at')->default(0);

@@ -11,4 +11,19 @@ class FormTemplateComponents extends BaseModel
     protected $casts = [
         'options' => 'array',
     ];
+
+    public function value()
+    {
+        return $this->hasOne(FormValues::class, 'id', 'component_id');
+    }
+
+    public function components()
+    {
+        return $this->hasMany(self::class, 'parent_id', 'id');
+    }
+
+    public function getOptionsAttribute($value)
+    {
+        return $value ? json_decode($value, 1) : [];
+    }
 }

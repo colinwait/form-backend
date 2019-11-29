@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('index');
 });
+Route::namespace('Form')->group(function ($router) {
+    $router->resource('/form', 'FormController');
+});

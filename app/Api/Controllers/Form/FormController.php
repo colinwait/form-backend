@@ -14,4 +14,9 @@ class FormController extends ApiController
         $forms = Forms::query()->paginate(10);
         return $this->success($forms);
     }
+
+    public function detail()
+    {
+
+    }
 }

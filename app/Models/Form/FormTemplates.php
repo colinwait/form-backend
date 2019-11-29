@@ -21,11 +21,6 @@ class FormTemplates extends BaseModel
 
     public function groups()
     {
-        return $this->hasMany(FormTemplateGroups::class, 'template_id', 'id');
-    }
-
-    public function components()
-    {
         return $this->hasMany(FormTemplateComponents::class, 'template_id', 'id');
     }
 }
