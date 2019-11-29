@@ -3,7 +3,7 @@
 @section('form-content')
     <div class="container">
         @if(isset($form->template->groups))
-            <form>
+            <form class="form-horizontal">
                 <div class="form-group">
                     @foreach($form->template->groups as $group)
                         <div class="panel panel-default">
