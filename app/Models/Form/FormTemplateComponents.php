@@ -14,7 +14,7 @@ class FormTemplateComponents extends BaseModel
 
     public function value()
     {
-        return $this->hasOne(FormValues::class, 'id', 'component_id');
+        return $this->hasOne(FormValues::class, 'component_id', 'id');
     }
 
     public function components()

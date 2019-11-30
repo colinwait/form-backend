@@ -1,5 +1,5 @@
 <div class="form-group">
-    <label for="{{$id}}" class="col-sm-1 control-label">{{ $component->name }}</label>
+    @include('form.components.label')
     <div class="col-sm-11">
         <input class="form-control" type="password" name="{{$id}}" id="{{$id}}"
                value="{{ $component->value->value ?? '' }}"

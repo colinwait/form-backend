@@ -1,1 +1,0 @@
-<label>{{ $component->name }}：</label>

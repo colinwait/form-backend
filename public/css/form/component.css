@@ -1,0 +1,12 @@
+.form-content {
+    padding-top: 20px;
+}
+
+.component-panel {
+    box-shadow: 2px 3px 12px 0px rgba(82, 82, 82, 0.4)
+}
+
+.component-remark-show {
+    position: fixed;
+    color: red;
+}
