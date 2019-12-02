@@ -14,7 +14,6 @@ class CreateFormValuesTable extends Migration
     public function up()
     {
         Schema::create('form_values', function (Blueprint $table) {
-            $table->bigIncrements('id');
             $table->bigInteger('template_id')->comment('模板id');
             $table->bigInteger('component_id')->comment('组件id');
             $table->bigInteger('form_id')->comment('表单id');

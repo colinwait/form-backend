@@ -19,4 +19,16 @@ class FormController extends ApiController
     {
 
     }
+
+    public function destroy($id)
+    {
+        $res = Forms::destroy(explode(',', $id));
+
+        return $this->success($res);
+    }
+
+    public function update($id)
+    {
+        logger(request()->all());
+    }
 }

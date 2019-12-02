@@ -3,31 +3,57 @@
 
 namespace App\Http\Controllers\Form;
 
-use App\Api\ApiController;
+use App\Http\Controllers\Controller;
+use App\Models\Form\FormCategories;
 use App\Models\Form\Forms;
+use App\Models\Form\FormTemplates;
+use App\Repositories\Form\FormRepository;
 
-class FormController extends ApiController
+class FormController extends Controller
 {
+    protected $form;
+
+    public function __construct(FormRepository $form)
+    {
+        $this->form = $form;
+    }
+
     public function index()
     {
-        $forms = Forms::query()->paginate(10);
+        $forms = Forms::query()->with('category')->orderByDesc('created_at')->paginate(10);
 
-        return view('form.form.index', ['forms' => $forms]);
+        $categories = FormCategories::all();
+
+        $templates = FormTemplates::all();
+
+        return view('form.form.index', ['forms' => $forms, 'categories' => $categories, 'templates' => $templates]);
+    }
+
+    public function store()
+    {
+        $form = Forms::create($this->withAuth());
+
+        return redirect('/form/' . $form->id);
     }
 
     public function show($id)
     {
-        $form = Forms::with(['template' => function ($query) use ($id) {
-            $query->with(['groups' => function ($query) use ($id) {
-                $query->where('parent_id', 0);
-                $query->with(['components' => function ($query) use ($id) {
-                    $query->with(['value' => function ($query) use ($id) {
-                        $query->where('form_id', $id);
-                    }])->orderBy('order', 'asc');
-                }])->orderBy('order', 'asc');
-            }]);
-        }])->where('id', $id)->first();
+        $form = $this->form->find($id);
 
-        return view('form.form.edit', ['form' => $form]);
+        return view('form.form.edit', ['form' => $form, 'edit' => true]);
+    }
+
+    public function update($id)
+    {
+        $this->form->update($id, request()->all());
+
+        return redirect()->back()->with('form-message', 'success');
+    }
+
+    public function showDetail($id)
+    {
+        $form = $this->form->find($id);
+
+        return view('form.form.edit', ['form' => $form, 'edit' => false]);
     }
 }

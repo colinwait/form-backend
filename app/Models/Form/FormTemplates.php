@@ -2,10 +2,10 @@
 
 namespace App\Models\Form;
 
-use App\Models\BaseModel;
+use App\Models\BaseSoftDeleteModel;
 use App\Models\Traits\AddCreatorTrait;
 
-class FormTemplates extends BaseModel
+class FormTemplates extends BaseSoftDeleteModel
 {
     use AddCreatorTrait;
 

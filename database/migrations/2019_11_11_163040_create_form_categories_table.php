@@ -19,6 +19,7 @@ class CreateFormCategoriesTable extends Migration
             $table->integer('parent_id')->comment('父级id');
             $table->string('parents', 1000)->comment('父集');
             $table->string('children', 1000)->comment('子集');
+            $table->integer('creator')->default(0)->comment('创建人');
             $table->integer('created_at')->default(0);
             $table->integer('updated_at')->default(0);
         });

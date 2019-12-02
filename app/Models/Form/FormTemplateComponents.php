@@ -2,9 +2,9 @@
 
 namespace App\Models\Form;
 
-use App\Models\BaseModel;
+use App\Models\BaseSoftDeleteModel;
 
-class FormTemplateComponents extends BaseModel
+class FormTemplateComponents extends BaseSoftDeleteModel
 {
     protected $table = 'form_template_components';
 

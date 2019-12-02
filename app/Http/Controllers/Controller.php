@@ -10,4 +10,12 @@ use Illuminate\Routing\Controller as BaseController;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+
+    public function withAuth($key = 'creator')
+    {
+        $params = request()->all();
+        $params[$key] = auth()->user()->id ?? 0;
+
+        return $params;
+    }
 }

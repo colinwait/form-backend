@@ -22,6 +22,7 @@ class CreateFormsTable extends Migration
             $table->integer('creator')->comment('创建人id')->default(0);
             $table->integer('created_at')->default(0);
             $table->integer('updated_at')->default(0);
+            $table->integer('deleted_at')->default(0);
         });
     }
 

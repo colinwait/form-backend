@@ -1,0 +1,18 @@
+a {
+    text-decoration: none;
+    outline: none;
+}
+
+a:focus {
+    outline: none;
+}
+
+a:hover {
+    text-decoration: none;
+    outline: none;
+}
+
+a:active {
+    outline: none;
+    text-decoration: none;
+}
