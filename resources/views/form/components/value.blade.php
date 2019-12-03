@@ -1,1 +1,1 @@
-<div class="form-control">{{ $component->value->value }}</div>
+<div class="form-control">{{ $component->value->value ?? '' }}</div>

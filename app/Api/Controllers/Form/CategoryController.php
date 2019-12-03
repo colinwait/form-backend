@@ -5,6 +5,7 @@ namespace App\Api\Controllers\Form;
 
 
 use App\Api\ApiController;
+use App\Models\Form\FormCategories;
 
 class CategoryController extends ApiController
 {
@@ -18,8 +19,10 @@ class CategoryController extends ApiController
 
     }
 
-    public function destroy()
+    public function destroy($id)
     {
+        $res = FormCategories::destroy(explode(',', $id));
 
+        return $this->success($res);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Api\Controllers\Form;
 
 
 use App\Api\ApiController;
+use App\Models\Form\FormTemplates;
 use App\Repositories\Form\TemplateRepository;
 
 class TemplateController extends ApiController
@@ -31,9 +32,11 @@ class TemplateController extends ApiController
         return $this->success($this->template->update($id, request()->all()));
     }
 
-    public function destroy()
+    public function destroy($id)
     {
+        $res = FormTemplates::destroy(explode(',', $id));
 
+        return $this->success($res);
     }
 
     public function show($id)

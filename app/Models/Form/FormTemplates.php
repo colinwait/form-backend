@@ -23,4 +23,9 @@ class FormTemplates extends BaseSoftDeleteModel
     {
         return $this->hasMany(FormTemplateComponents::class, 'template_id', 'id');
     }
+
+    public function setIntroductionAttribute($value)
+    {
+        $this->attributes['introduction'] = $value ?: '';
+    }
 }

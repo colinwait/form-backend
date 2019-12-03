@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('index');
 });
 Route::namespace('Form')->group(function ($router) {
-    $router->resource('/form', 'FormController');
+    $router->resource('/form/forms', 'FormController');
+    $router->resource('/form/category', 'CategoryController');
+    $router->resource('/form/templates', 'TemplateController');
+    $router->resource('/form/components', 'ComponentController');
     $router->get('/form/show/{id}', 'FormController@showDetail');
 });

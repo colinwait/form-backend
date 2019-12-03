@@ -5,6 +5,7 @@ namespace App\Api\Controllers\Form;
 
 
 use App\Api\ApiController;
+use App\Models\Form\FormTemplateComponents;
 
 class ComponentController extends ApiController
 {
@@ -18,8 +19,10 @@ class ComponentController extends ApiController
 
     }
 
-    public function destroy()
+    public function destroy($id)
     {
+        $res = FormTemplateComponents::destroy(explode(',', $id));
 
+        return $this->success($res);
     }
 }

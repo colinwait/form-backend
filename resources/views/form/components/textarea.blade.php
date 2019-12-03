@@ -1,4 +1,4 @@
-<div class="form-group">
+<div class="form-group component-form-group">
     @include('form.components.label')
     <div class="col-sm-11">
         @if($edit)

@@ -19,5 +19,7 @@ $api->version('v1', function ($api) {
     $api->group(['namespace' => 'App\Api\Controllers\Form', 'prefix' => 'form'], function ($api) {
         $api->resource('templates', 'TemplateController');
         $api->resource('forms', 'FormController');
+        $api->resource('category', 'CategoryController');
+        $api->resource('components', 'ComponentController');
     });
 });

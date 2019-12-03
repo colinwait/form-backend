@@ -15,12 +15,12 @@
 @section('form-content')
     <div class="container form-content">
         <div>
-            <a href="/form">
+            <a href="/form/forms">
                 <button class="btn btn-primary form-return">返回</button>
             </a>
         </div>
         @if(isset($form->template->groups))
-            <form class="form-horizontal" action="/form/{{$form->id}}" method="POST">
+            <form class="form-horizontal" action="/form/forms/{{$form->id}}" method="POST">
                 @method('PUT')
                 @csrf
                 <div class="form-group">

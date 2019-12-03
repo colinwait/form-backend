@@ -15,22 +15,20 @@
 @section('form-content')
     <div class="container form-content">
         <div>
-            <button class="btn btn-primary form-create" data-toggle="modal" data-target="#formCreateModal">创建表单</button>
-            <a href="/form/category">
-                <button class="btn btn-primary form-create">分类管理</button>
+            <a href="/form/forms">
+                <button class="btn btn-primary form-create">返回</button>
             </a>
-            <a href="/form/templates">
-                <button class="btn btn-primary form-create">模板管理</button>
-            </a>
-            <!--创建表单-->
-            <div class="modal fade" id="formCreateModal" tabindex="-1" role="dialog"
-                 aria-labelledby="formCreateModal">
+            <button class="btn btn-primary form-create" data-toggle="modal" data-target="#formTempCreateModal">创建模板
+            </button>
+            <!--创建模板-->
+            <div class="modal fade" id="formTempCreateModal" tabindex="-1" role="dialog"
+                 aria-labelledby="formTempCreateModal">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
-                        <form action="" method="POST">
+                        <form action="/form/templates" method="POST">
                             @csrf
                             <div class="modal-header">
-                                创建表单
+                                创建分类
                             </div>
                             <div class="modal-body">
                                 <div class="form-group">
@@ -40,26 +38,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="form-introduction">简介</label>
-                                    <textarea class="form-control" id="form-introduction" name="introduction"
-                                              placeholder="请输入简介"></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label for="form-category">分类</label>
-                                    <select class="form-control" name="category_id" id="form-category">
-                                        <option value="0">请选择分类</option>
-                                        @foreach($categories as $category)
-                                            <option value="{{$category->id}}">{{$category->name}}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="form-template">模板</label>
-                                    <select class="form-control" name="template_id" id="form-template" required>
-                                        <option value="0">请选择模板</option>
-                                        @foreach($templates as $template)
-                                            <option value="{{$template->id}}">{{$template->name}}</option>
-                                        @endforeach
-                                    </select>
+                                    <textarea class="form-control" id="form-introduction"
+                                              name="introduction" placeholder="请输入简介"></textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -76,42 +56,39 @@
             <tr>
                 <th>序号</th>
                 <th>名称</th>
-                <th>分类</th>
+                <th>简介</th>
                 <th>创建时间</th>
                 <th>操作</th>
             </tr>
             </thead>
             <tbody>
-            @foreach ($forms as $form)
+            @foreach ($templates as $template)
                 <tr>
-                    <th>{{$form->id}}</th>
-                    <td>{{$form->name}}</td>
-                    <td>{{$form->category->name ?? ''}}</td>
-                    <td>{{$form->created_at}}</td>
+                    <th>{{$template->id}}</th>
+                    <td>{{$template->name}}</td>
+                    <td>{{$template->introduction}}</td>
+                    <td>{{$template->created_at}}</td>
                     <td>
-                        <a href="/form/show/{{ $form->id }}">
-                            <button class="btn btn-success" type="button">查看</button>
-                        </a>
-                        <a href="/form/forms/{{ $form->id }}">
+                        <a href="/form/templates/{{ $template->id }}">
                             <button class="btn btn-info" type="button">编辑</button>
                         </a>
                         <button class="btn btn-danger" type="button" data-toggle="modal"
-                                data-target="#formDeleteModal-{{$form->id}}">
+                                data-target="#formDeleteModal-{{$template->id}}">
                             删除
                         </button>
-                        <div class="modal fade" id="formDeleteModal-{{$form->id}}" tabindex="-1" role="dialog"
+                        <div class="modal fade" id="formDeleteModal-{{$template->id}}" tabindex="-1" role="dialog"
                              aria-labelledby="formDeleteModal">
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        删除：{{ $form->name }}
+                                        删除：{{ $template->name }}
                                     </div>
                                     <div class="modal-body">
-                                        是否确认删除{{$form->name}}
+                                        是否确认删除{{$template->name}}
                                     </div>
                                     <div class="modal-footer">
                                         <button type="submit" class="btn btn-danger"
-                                                onclick="formDelete(this, {{$form->id}})">确认
+                                                onclick="formDelete(this, {{$template->id}})">确认
                                         </button>
                                         <button type="button" class="btn btn-primary" data-dismiss="modal">取消</button>
                                     </div>
@@ -123,7 +100,7 @@
             @endforeach
             </tbody>
         </table>
-        {{$forms->links()}}
+        {{$templates->links()}}
     </div>
 
 @endsection
@@ -134,7 +111,7 @@
             $.ajax({
                 type: 'DELETE',
                 method: 'DELETE',
-                url: '/api/form/forms/' + id,
+                url: '/api/form/templates/' + id,
                 success: function (data) {
                     if (data.data) {
                         window.location.reload()

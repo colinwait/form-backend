@@ -8,6 +8,20 @@ class FormTemplateComponents extends BaseSoftDeleteModel
 {
     protected $table = 'form_template_components';
 
+    protected $fillable = [
+        'name',
+        'key',
+        'template_id',
+        'parent_id',
+        'type',
+        'order',
+        'is_require',
+        'placeholder',
+        'options',
+        'remark',
+        'creator'
+    ];
+
     protected $casts = [
         'options' => 'array',
     ];
@@ -25,5 +39,10 @@ class FormTemplateComponents extends BaseSoftDeleteModel
     public function getOptionsAttribute($value)
     {
         return $value ? json_decode($value, 1) : [];
+    }
+
+    public function setRemarkAttribute($value)
+    {
+        $this->attributes['remark'] = $value ?: '';
     }
 }
