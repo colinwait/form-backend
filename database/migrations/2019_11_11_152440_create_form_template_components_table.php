@@ -24,6 +24,7 @@ class CreateFormTemplateComponentsTable extends Migration
             $table->unsignedTinyInteger('is_require')->default(0)->comment('是否必填');
             $table->string('placeholder')->default('')->comment('显示信息');
             $table->json('options')->nullable()->comment('选项信息');
+            $table->string('remark', 1000)->default('')->comment('备注信息');
             $table->integer('creator')->comment('创建人id')->default(0);
             $table->integer('created_at')->default(0);
             $table->integer('updated_at')->default(0);
