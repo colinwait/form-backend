@@ -16,7 +16,7 @@ class CreateFormTemplatesTable extends Migration
         Schema::create('form_templates', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->comment('模板名称');
-            $table->string('introduction', 1000)->comment('简介');
+            $table->string('introduction', 1000)->default('')->comment('简介');
             $table->integer('creator')->comment('创建人id')->default(0);
             $table->integer('created_at')->default(0);
             $table->integer('updated_at')->default(0);

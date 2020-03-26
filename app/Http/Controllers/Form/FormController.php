@@ -33,7 +33,7 @@ class FormController extends Controller
     {
         $form = Forms::create($this->withAuth());
 
-        return redirect('/form/' . $form->id);
+        return redirect('/form/forms/' . $form->id);
     }
 
     public function show($id)
